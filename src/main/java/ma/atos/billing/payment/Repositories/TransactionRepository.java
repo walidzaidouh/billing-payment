@@ -1,9 +1,9 @@
 package ma.atos.billing.payment.Repositories;
 
-import ma.atos.billing.payment.models.Caisse;
+import org.hibernate.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CaisseRepository extends JpaRepository<Caisse,Long> {
+public interface TransactionRepository extends JpaRepository<Transaction,Long> {
 }
