@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 
-@Id
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class Caisse {
+
 
     private Long id  ;
     private Date date ;
