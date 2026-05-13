@@ -17,13 +17,9 @@ import java.util.List;
 @Data
 public class Caisse extends BusnessObject {
 
-<<<<<<< HEAD
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-=======
-
->>>>>>> master
     private Long id  ;
 
     @Column(name = "DATE")
