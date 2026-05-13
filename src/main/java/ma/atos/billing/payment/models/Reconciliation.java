@@ -9,8 +9,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+<<<<<<< HEAD
 import java.math.BigDecimal;
 
+=======
+>>>>>>> master
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
