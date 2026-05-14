@@ -47,13 +47,6 @@ public class TransactionServiceImpl implements TransactionService {
 
 
     @Override
-    public List<Transaction> getAllTransByCustomer(Long customerId) {
-
-        List<Transaction> TransList = new ArrayList<>();
-        return List.of();
-    }
-
-    @Override
     public List<Transaction> getAllTransactionByPV(Long pvId) {
         return transactionRepository.findByPvId(pvId);
     }

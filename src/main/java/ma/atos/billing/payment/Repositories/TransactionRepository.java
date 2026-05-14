@@ -16,9 +16,6 @@ public interface TransactionRepository  extends JpaRepository<Transaction,Long> 
 
     List<Transaction>getTransactionByOperationType(OperationType operationType);
 
-    List<Transaction> getAllTransByCustomer(Long customerId);
-
-
     List<Transaction> findByPvId(Long pvId);
 
     List<Transaction> findByCreancierId(Long creancierId);

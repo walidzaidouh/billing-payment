@@ -6,6 +6,8 @@ import ma.atos.billing.payment.Services.TransactionService;
 import ma.atos.billing.payment.models.Transaction;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/Transactions")
 @RequiredArgsConstructor
@@ -19,10 +21,20 @@ public class TransactionController {
         return transactionService.createTransaction(transaction, customerId);
     }
 
-        @GetMapping("/customer/{id}")
-        public List<Transaction> getTransactionsByCustomer(@PathVariable Long id){
-            return transactionService.getAllTransByCustomer(id);
-        }
+    @GetMapping("/pv/{pvId}")
+    public List<Transaction> getTransactionsByPv(@PathVariable Long pvId) {
+        return transactionService.getAllTransactionByPV(pvId);
+    }
+
+    @GetMapping("/creancier/{creancierId}")
+    public List<Transaction> getTransactionsByCreancier(@PathVariable Long creancierId) {
+        return transactionService.getAllTransactionByCreancier(creancierId);
+    }
+
+
+
+
+
 
 
 
