@@ -18,9 +18,6 @@ import java.math.BigDecimal;
 @Data
 public class Reconciliation extends BusinessObject {
 
-    @OneToOne
-    @JoinColumn(name = "CAISSE_ID")
-    private Caisse caisse;
 
     @Column(name = "TOTAL_DEBIT")
     private BigDecimal totalDebit;
@@ -30,4 +27,9 @@ public class Reconciliation extends BusinessObject {
 
     @Column(name = "IS_CORRECT")
     private boolean isCorrect;
+
+    @ManyToOne
+    @JoinColumn(name = "caisse_id")
+    private Caisse caisse;
+
 }

@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -37,7 +35,7 @@ public class Caisse extends BusinessObject {
     @OneToMany(mappedBy = "caisse")
     private List<Transaction> transactions;
 
-    @OneToOne
-    @JoinColumn(name = "RECONCILIATION_ID")
-    private Reconciliation reconciliation;
+    @OneToMany
+    @JoinColumn(name = "CAISSE_ID")
+    private List<Reconciliation> reconciliations;
 }
