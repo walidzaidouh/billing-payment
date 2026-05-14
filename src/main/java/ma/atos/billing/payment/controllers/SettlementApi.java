@@ -1,14 +1,11 @@
-package ma.atos.billing.payment.Controllers;
+package ma.atos.billing.payment.controllers;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import ma.atos.billing.payment.Services.CaisseService;
-import ma.atos.billing.payment.Services.RecService;
+import ma.atos.billing.payment.services.CaisseService;
+import ma.atos.billing.payment.services.RecService;
 import ma.atos.billing.payment.models.Caisse;
 import ma.atos.billing.payment.models.Reconciliation;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

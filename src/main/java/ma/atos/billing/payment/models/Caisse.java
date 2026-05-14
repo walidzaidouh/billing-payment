@@ -34,13 +34,7 @@ public class Caisse extends BusinessObject {
     @Column(name = "IS_CLOSED")
     private boolean isClosed;
 
-    @OneToMany
-    @JoinTable(
-            name = "CAISSE_TRANSACTIONS",
-            schema = "payment",
-            joinColumns = @JoinColumn(name = "CAISSE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "TRANSACTION_ID")
-    )
+    @OneToMany(mappedBy = "caisse")
     private List<Transaction> transactions;
 
     @OneToOne

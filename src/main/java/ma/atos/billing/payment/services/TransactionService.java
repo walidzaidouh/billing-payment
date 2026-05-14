@@ -1,4 +1,4 @@
-package ma.atos.billing.payment.Services;
+package ma.atos.billing.payment.services;
 
 
 import ma.atos.billing.payment.models.Caisse;
@@ -12,7 +12,6 @@ public interface TransactionService {
 
     Transaction getTransactionByID(Long id )  ;
 
-    List<Transaction> getTransactionByClient(Customer customer ) ;
 
     BigDecimal getTransactionAmount(Long id) ;
 
@@ -22,4 +21,6 @@ public interface TransactionService {
 
     void delete(Long id);
 
+
+    List<Transaction> findByCustomerId(Long customerId);
 }

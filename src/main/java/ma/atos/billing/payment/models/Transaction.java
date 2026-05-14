@@ -29,6 +29,13 @@ public class Transaction extends BusinessObject {
     @Column(name = "OPERATION_TYPE")
     private OperationType operationType;
 
+    @ManyToOne
+    @JoinColumn(name = "CAISSE_ID")
+    private Caisse caisse;
+
+    @Column(name = "CUSTOMER_ID")
+    private Long customerId;
+
 
 
 

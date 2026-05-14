@@ -1,12 +1,8 @@
-package ma.atos.billing.payment.Services.Impl;
+package ma.atos.billing.payment.services.Impl;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import ma.atos.billing.payment.Repositories.CaisseRepository;
-import ma.atos.billing.payment.Repositories.ReconciliationRepository;
-import ma.atos.billing.payment.Services.RecService;
-import ma.atos.billing.payment.Services.TransactionService;
+import ma.atos.billing.payment.repositories.ReconciliationRepository;
+import ma.atos.billing.payment.services.RecService;
 import ma.atos.billing.payment.enums.OperationType;
 import ma.atos.billing.payment.models.Caisse;
 import ma.atos.billing.payment.models.Reconciliation;

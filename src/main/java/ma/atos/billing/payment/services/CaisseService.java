@@ -1,4 +1,4 @@
-package ma.atos.billing.payment.Services;
+package ma.atos.billing.payment.services;
 
 import ma.atos.billing.payment.models.Caisse;
 

@@ -1,11 +1,9 @@
-package ma.atos.billing.payment.Services.Impl;
+package ma.atos.billing.payment.services.Impl;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import ma.atos.billing.payment.Repositories.TransactionRepository;
-import ma.atos.billing.payment.Services.TransactionService;
+import ma.atos.billing.payment.repositories.TransactionRepository;
+import ma.atos.billing.payment.services.TransactionService;
 import ma.atos.billing.payment.models.Caisse;
 import ma.atos.billing.payment.models.Customer;
 import ma.atos.billing.payment.models.Transaction;
@@ -28,11 +26,6 @@ public class TransactionServiceImpl implements TransactionService {
                         new RuntimeException("Transaction not found with id : " + id));
     }
 
-    @Override
-    public List<Transaction> getTransactionByClient(Customer customer) {
-
-        return transactionRepository.findByCustomer(customer);
-    }
 
     @Override
     public BigDecimal getTransactionAmount(Long id) {
@@ -45,7 +38,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public List<Transaction> getTrasactionByCaisse(Caisse caisse) {
 
-        return transactionRepository.findByCaissesContaining(caisse);
+        return transactionRepository.findByCaisse(caisse);
     }
 
     @Override
@@ -58,5 +51,10 @@ public class TransactionServiceImpl implements TransactionService {
     public void delete(Long id) {
 
         transactionRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Transaction> findByCustomerId(Long customerId) {
+        return transactionRepository.findByCustomerId(customerId);
     }
 }

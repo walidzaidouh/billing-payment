@@ -1,10 +1,10 @@
-package ma.atos.billing.payment.Controllers;
+package ma.atos.billing.payment.controllers;
 
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import ma.atos.billing.payment.Services.TransactionService;
+import ma.atos.billing.payment.services.TransactionService;
 import ma.atos.billing.payment.models.Caisse;
 import ma.atos.billing.payment.models.Customer;
 import ma.atos.billing.payment.models.Transaction;
@@ -52,7 +52,7 @@ public class TransactionController {
         customer.setId(customerId);
 
         return ResponseEntity.ok(
-                transactionService.getTransactionByClient(customer)
+                transactionService.findByCustomerId(customerId)
         );
     }
 

@@ -1,12 +1,9 @@
-package ma.atos.billing.payment.Services.Impl;
+package ma.atos.billing.payment.services.Impl;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import ma.atos.billing.payment.Repositories.CaisseRepository;
-import ma.atos.billing.payment.Services.CaisseService;
-import ma.atos.billing.payment.Services.RecService;
+import ma.atos.billing.payment.repositories.CaisseRepository;
+import ma.atos.billing.payment.services.CaisseService;
+import ma.atos.billing.payment.services.RecService;
 import ma.atos.billing.payment.models.Caisse;
 import org.springframework.stereotype.Service;
 

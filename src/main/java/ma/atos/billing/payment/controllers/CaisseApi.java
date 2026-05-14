@@ -1,12 +1,10 @@
-package ma.atos.billing.payment.Controllers;
+package ma.atos.billing.payment.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import ma.atos.billing.payment.Services.CaisseService;
+import ma.atos.billing.payment.services.CaisseService;
 import ma.atos.billing.payment.models.Caisse;
-import ma.atos.billing.payment.models.Reconciliation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

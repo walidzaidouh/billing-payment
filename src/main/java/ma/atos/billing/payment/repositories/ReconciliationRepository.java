@@ -1,4 +1,4 @@
-package ma.atos.billing.payment.Repositories;
+package ma.atos.billing.payment.repositories;
 
 
 

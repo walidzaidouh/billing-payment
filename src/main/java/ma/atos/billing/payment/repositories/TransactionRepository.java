@@ -1,4 +1,4 @@
-package ma.atos.billing.payment.Repositories;
+package ma.atos.billing.payment.repositories;
 
 import ma.atos.billing.payment.models.Caisse;
 import ma.atos.billing.payment.models.Customer;
@@ -11,9 +11,9 @@ import java.util.List;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction,Long> {
 
-    List<Transaction> findByCustomer(Customer customer);
+    List<Transaction> findByCustomerId(Long customerId);
 
-    List<Transaction> findByCaissesContaining(Caisse caisse);
+    List<Transaction> findByCaisse(Caisse caisse);
 
 
 }
