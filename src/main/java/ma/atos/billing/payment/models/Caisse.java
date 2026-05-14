@@ -20,8 +20,7 @@ import java.util.List;
 @Data
 public class Caisse extends BusinessObject {
 
-    @Column(name = "DATE")
-    private Date date;
+
 
     @Column(name = "MONTANT_DEPART")
     private BigDecimal montantDepart;

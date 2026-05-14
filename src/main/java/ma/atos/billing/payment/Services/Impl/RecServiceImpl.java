@@ -16,43 +16,45 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
-
 @Service
-@Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class RecServiceImpl implements RecService {
 
+    private final ReconciliationRepository reconciliationRepository;
 
-    ReconciliationRepository reconciliationRepository ;
 
-    TransactionService transactionService ;
-
-    CaisseRepository caisseRepository ;
     @Override
-    public Reconciliation executeStlm(Caisse caisse,BigDecimal soldeFin) {
+    public Reconciliation executeStlm(Caisse caisse, BigDecimal soldeFin) {
 
-        List<Transaction> transactions = caisse.getTransactions() ;
+        List<Transaction> transactions = caisse.getTransactions();
+
         BigDecimal amountDebit = BigDecimal.ZERO;
         BigDecimal amountCredit = BigDecimal.ZERO;
 
         for (Transaction t : transactions) {
 
-            if (t.getOperationType().equals(OperationType.CREDIT)) {
-
+            if (t.getOperationType() == OperationType.CREDIT) {
                 amountCredit = amountCredit.add(t.getMontant());
-
             } else {
-
                 amountDebit = amountDebit.add(t.getMontant());
             }
         }
+
         BigDecimal calculatedSolde =
                 caisse.getMontantDepart()
                         .add(amountCredit)
                         .subtract(amountDebit);
-        boolean isCorrect = calculatedSolde.equals(soldeFin) ;
-        Reconciliation rec = new Reconciliation(caisse ,amountDebit,amountCredit,isCorrect) ;
-        return rec;
+
+        boolean isCorrect =
+                calculatedSolde.compareTo(soldeFin) == 0;
+
+        Reconciliation rec = Reconciliation.builder()
+                .caisse(caisse)
+                .totalDebit(amountDebit)
+                .totalCredit(amountCredit)
+                .isCorrect(isCorrect)
+                .build();
+
+        return reconciliationRepository.save(rec);
     }
 }

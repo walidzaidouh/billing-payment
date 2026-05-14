@@ -18,4 +18,8 @@ public interface TransactionService {
 
 
     List<Transaction> getTrasactionByCaisse(Caisse caisse ) ;
+    Transaction save(Transaction transaction);
+
+    void delete(Long id);
+
 }

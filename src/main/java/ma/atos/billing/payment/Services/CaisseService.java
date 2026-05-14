@@ -13,4 +13,6 @@ public interface CaisseService {
     Caisse getById(Long id) ;
 
     Caisse save(Caisse caisse);
+
+    void delete(Long id);
 }

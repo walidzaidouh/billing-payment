@@ -3,16 +3,18 @@ package ma.atos.billing.payment.Controllers;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import ma.atos.billing.payment.Services.CaisseService;
 import ma.atos.billing.payment.models.Caisse;
 import ma.atos.billing.payment.models.Reconciliation;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/api/caisse")
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Tag(name = "Caisse API", description = "Operations related to caisse management")
 public class CaisseApi {
 
@@ -20,7 +22,57 @@ public class CaisseApi {
 
     @Operation(summary = "Create a new caisse")
     @PostMapping("/create")
-    public Caisse ajouterCaisse(@RequestBody Caisse caisse) {
-        return caisseService.save(caisse);
+    public ResponseEntity<Caisse> ajouterCaisse(
+            @RequestBody Caisse caisse
+    ) {
+
+        return ResponseEntity.ok(
+                caisseService.save(caisse)
+        );
+    }
+
+    @Operation(summary = "Get caisse by ID")
+    @GetMapping("/{id}")
+    public ResponseEntity<Caisse> getById(
+            @PathVariable Long id
+    ) {
+
+        return ResponseEntity.ok(
+                caisseService.getById(id)
+        );
+    }
+
+    @Operation(summary = "Open caisse")
+    @PutMapping("/{id}/open")
+    public ResponseEntity<Boolean> ouvrirCaisse(
+            @PathVariable Long id
+    ) {
+
+        return ResponseEntity.ok(
+                caisseService.ouvrirCaisse(id)
+        );
+    }
+
+    @Operation(summary = "Close caisse and execute reconciliation")
+    @PutMapping("/{id}/close")
+    public ResponseEntity<Boolean> fermerCaisse(
+            @PathVariable Long id,
+            @RequestParam BigDecimal soldeFin
+    ) {
+
+        return ResponseEntity.ok(
+                caisseService.fermerCaisse(id, soldeFin)
+        );
+    }
+
+    @Operation(summary = "Delete caisse")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(
+            @PathVariable Long id
+    ) {
+
+        caisseService.delete(id);
+
+        return ResponseEntity.noContent().build();
     }
 }

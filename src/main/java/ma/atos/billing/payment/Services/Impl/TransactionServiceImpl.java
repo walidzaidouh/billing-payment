@@ -15,33 +15,48 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Service
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class TransactionServiceImpl implements TransactionService {
 
-    TransactionRepository transactionRepository ;
-
+    private final TransactionRepository transactionRepository;
 
     @Override
-    public Transaction getTransactionByID(Long id ) {
-        return transactionRepository.findById(id).get();
+    public Transaction getTransactionByID(Long id) {
+
+        return transactionRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Transaction not found with id : " + id));
     }
 
     @Override
     public List<Transaction> getTransactionByClient(Customer customer) {
-        return List.of();
+
+        return transactionRepository.findByCustomer(customer);
     }
-
-
 
     @Override
     public BigDecimal getTransactionAmount(Long id) {
-        return null;
+
+        Transaction transaction = getTransactionByID(id);
+
+        return transaction.getMontant();
     }
 
     @Override
     public List<Transaction> getTrasactionByCaisse(Caisse caisse) {
-        return List.of();
+
+        return transactionRepository.findByCaissesContaining(caisse);
+    }
+
+    @Override
+    public Transaction save(Transaction transaction) {
+
+        return transactionRepository.save(transaction);
+    }
+
+    @Override
+    public void delete(Long id) {
+
+        transactionRepository.deleteById(id);
     }
 }
