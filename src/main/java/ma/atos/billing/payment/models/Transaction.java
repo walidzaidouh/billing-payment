@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import ma.atos.billing.payment.enums.OperationType;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "TRANSACTION", schema = "payment")
@@ -19,7 +20,7 @@ import java.sql.Date;
 public class Transaction extends BusinessObject {
 
     @Column(name = "DATE")
-    private Date date;
+    private LocalDateTime date;
 
     @Column(name = "MONTANT")
     private Double montant;

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public Transaction createTransaction(Transaction transaction,Long customerId) {
 
-        transaction.setDate((java.sql.Date) new Date());
+        transaction.setDate(LocalDateTime.now());
 
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new RuntimeException("Customer not found"));
