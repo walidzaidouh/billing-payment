@@ -11,24 +11,20 @@ import ma.atos.billing.payment.enums.OperationType;
 import java.sql.Date;
 
 @Entity
+@Table(name = "TRANSACTION", schema = "payment")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-public class Transaction extends BusnessObject {
+public class Transaction extends BusinessObject {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "")
-    @Column(name = "ID")
-    private Long id  ;
     @Column(name = "DATE")
-    private Date date ;
+    private Date date;
 
-    private Double montant  ;
+    @Column(name = "MONTANT")
+    private Double montant;
 
-    private OperationType operationType ;
-
-
-
-
+    @Enumerated(EnumType.STRING)
+    @Column(name = "OPERATION_TYPE")
+    private OperationType operationType;
 }

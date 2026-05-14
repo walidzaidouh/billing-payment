@@ -1,27 +1,23 @@
 package ma.atos.billing.payment.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "POINT_DE_VENTE", schema = "payment")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-public class PointDeVente extends BusnessObject {
+public class PointDeVente extends BusinessObject {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id  ;
+    @Column(name = "NAME")
+    private String name;
 
-    private String name  ;
-
-    private String adresse ;
+    @Column(name = "ADRESSE")
+    private String adresse;
 }

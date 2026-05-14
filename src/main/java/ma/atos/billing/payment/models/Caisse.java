@@ -5,42 +5,44 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "CAISSE", schema = "payment")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-public class Caisse extends BusnessObject {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Long id  ;
+public class Caisse extends BusinessObject {
 
     @Column(name = "DATE")
-    private Date date ;
+    private Date date;
 
-    private BigDecimal montantDepart ;
+    @Column(name = "MONTANT_DEPART")
+    private BigDecimal montantDepart;
 
-    private BigDecimal Solde ;
-
+    @Column(name = "SOLDE")
+    private BigDecimal solde;
 
     @ManyToOne
-    private PointDeVente pdv ; // a verifier
+    @JoinColumn(name = "PDV_ID")
+    private PointDeVente pdv;
 
-    private List<Transaction> transactions ;
+    @OneToMany
+    @JoinTable(
+            name = "CAISSE_TRANSACTIONS",
+            schema = "payment",
+            joinColumns = @JoinColumn(name = "CAISSE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "TRANSACTION_ID")
+    )
+    private List<Transaction> transactions;
 
     @OneToOne
-    private Reconciliation reconciliation ;
-
-
-
-
-
-
+    @JoinColumn(name = "RECONCILIATION_ID")
+    private Reconciliation reconciliation;
 }

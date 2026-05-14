@@ -12,25 +12,32 @@ import java.util.List;
 
 
 @Entity
+@Table(name = "CUSTOMER", schema = "payment")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-public class Customer extends BusnessObject {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "param_generator")
-    private Long id ;
+public class Customer extends BusinessObject {
 
     @Column(name = "PRENOM")
-    private String prenom ;
+    private String prenom;
 
-    private String nom  ;
+    @Column(name = "NOM")
+    private String nom;
 
-    private String adresse ;
+    @Column(name = "ADRESSE")
+    private String adresse;
 
-    private PaymentType paymentType ;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "PAYMENT_TYPE")
+    private PaymentType paymentType;
 
     @OneToMany
-    private List<Transaction> transactions  ;
+    @JoinTable(
+            name = "CUSTOMER_TRANSACTIONS",
+            schema = "payment",
+            joinColumns = @JoinColumn(name = "CUSTOMER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "TRANSACTION_ID")
+    )
+    private List<Transaction> transactions;
 }

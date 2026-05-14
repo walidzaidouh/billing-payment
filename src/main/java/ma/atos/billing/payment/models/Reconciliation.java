@@ -1,9 +1,7 @@
 package ma.atos.billing.payment.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,19 +9,25 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+
 @Entity
+@Table(name = "RECONCILIATION", schema = "payment")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-public class Reconciliation extends BusnessObject {
+public class Reconciliation extends BusinessObject {
 
     @OneToOne
-    private Caisse caisse ;
+    @JoinColumn(name = "CAISSE_ID")
+    private Caisse caisse;
 
-    private BigDecimal totalDebit ;
+    @Column(name = "TOTAL_DEBIT")
+    private BigDecimal totalDebit;
 
-    private BigDecimal totalCredit ;
+    @Column(name = "TOTAL_CREDIT")
+    private BigDecimal totalCredit;
 
-    private boolean isCorrect ;
+    @Column(name = "IS_CORRECT")
+    private boolean isCorrect;
 }
