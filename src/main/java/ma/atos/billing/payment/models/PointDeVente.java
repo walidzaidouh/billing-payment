@@ -7,8 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "POINT_DE_VENTE", schema = "payment")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

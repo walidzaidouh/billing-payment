@@ -11,8 +11,6 @@ import ma.atos.billing.payment.enums.PaymentType;
 import java.util.List;
 
 
-@Entity
-@Table(name = "CUSTOMER", schema = "payment")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
