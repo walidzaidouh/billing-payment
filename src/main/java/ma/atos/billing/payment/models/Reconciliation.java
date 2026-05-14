@@ -1,15 +1,14 @@
 package ma.atos.billing.payment.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -17,6 +16,10 @@ import java.math.BigDecimal;
 @Builder
 @Data
 public class Reconciliation extends BusnessObject {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
 
     @OneToOne
     private Caisse caisse ;
@@ -26,4 +29,5 @@ public class Reconciliation extends BusnessObject {
     private BigDecimal totalCredit ;
 
     private boolean isCorrect ;
+
 }

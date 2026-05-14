@@ -6,7 +6,10 @@ spring:
     username: root
     password: eSFHR9u2mbBVLLDJtSG3
     driver-class-name: org.postgresql.Driver
-
+  config:
+    import: optional:configserver://
+  flyway:
+    baseline-on-migrate: true
   jpa:
     hibernate:
       ddl-auto: update

@@ -1,6 +1,6 @@
 package ma.atos.billing.payment.Repositories;
 
-import org.hibernate.Transaction;
+import ma.atos.billing.payment.models.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

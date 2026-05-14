@@ -11,14 +11,14 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Builder
+    @Data
 public class Caisse extends BusnessObject {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id  ;
 
@@ -29,17 +29,14 @@ public class Caisse extends BusnessObject {
 
     private BigDecimal Solde ;
 
-
     @ManyToOne
     private PointDeVente pdv ; // a verifier
 
+    @OneToMany
     private List<Transaction> transactions ;
 
     @OneToOne
     private Reconciliation reconciliation ;
-
-
-
 
 
 

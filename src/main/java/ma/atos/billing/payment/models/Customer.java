@@ -29,8 +29,4 @@ public class Customer extends BusnessObject {
 
     private String adresse ;
 
-    private PaymentType paymentType ;
-
-    @OneToMany
-    private List<Transaction> transactions  ;
 }

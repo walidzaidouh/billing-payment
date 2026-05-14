@@ -28,7 +28,6 @@ public class Transaction extends BusnessObject {
 
     private OperationType operationType ;
 
-
-
-
+    @OneToOne
+    private Caisse caisse;
 }
