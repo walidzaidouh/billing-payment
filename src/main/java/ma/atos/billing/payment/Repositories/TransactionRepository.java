@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface TransactionRepository  extends JpaRepository<Transaction,Long> {
 
+    List<Transaction> findByCustomerId(Long customerId);
 
     List<Transaction>getTransactionByDate(Date date);
 

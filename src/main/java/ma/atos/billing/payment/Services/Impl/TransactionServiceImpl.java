@@ -1,6 +1,7 @@
 package ma.atos.billing.payment.Services.Impl;
 
 
+import ma.atos.billing.payment.Repositories.TransactionRepository;
 import ma.atos.billing.payment.Services.TransactionService;
 import ma.atos.billing.payment.models.Transaction;
 import org.springframework.stereotype.Service;
@@ -14,21 +15,30 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public Transaction createTransaction(Transaction transaction) {
+
         return null;
+    }
+
+    private final TransactionRepository transactionRepository;
+
+    public TransactionServiceImpl(TransactionRepository transactionRepository) {
+        this.transactionRepository = transactionRepository;
     }
 
     @Override
     public List<Transaction> getAllTransByCustomer(Long customerId) {
-        return List.of();
+        return transactionRepository.findByCustomerId(customerId);
     }
 
     @Override
     public List<Transaction> getAllTransactionByPV(Long pvId) {
+
         return List.of();
     }
 
     @Override
     public List<Transaction> getAllTransactionByCreancier(Long CreancierId) {
+
         return List.of();
     }
 }
