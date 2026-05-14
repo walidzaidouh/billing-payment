@@ -33,6 +33,8 @@ public class Caisse extends BusinessObject {
     @JoinColumn(name = "PDV_ID")
     private PointDeVente pdv;
 
+
+    private boolean isClosed;
     @OneToMany
     @JoinTable(
             name = "CAISSE_TRANSACTIONS",
