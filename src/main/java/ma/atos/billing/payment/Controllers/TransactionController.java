@@ -30,6 +30,9 @@ public class TransactionController {
     public List<Transaction> getTransactionsByCreancier(@PathVariable Long creancierId) {
         return transactionService.getAllTransactionByCreancier(creancierId);
     }
+    
+
+
 
 
 
