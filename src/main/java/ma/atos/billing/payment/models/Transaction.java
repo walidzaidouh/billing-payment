@@ -30,4 +30,7 @@ public class Transaction extends BusinessObject {
 
     @OneToOne
     private Customer customer;
+
+    private Long pvId;
+    private Long creancierId;
 }

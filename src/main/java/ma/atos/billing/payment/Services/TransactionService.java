@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface TransactionService {
 
-    Transaction createTransaction(Transaction transaction);
+    Transaction createTransaction(Transaction transaction,Long customerId);
 
     List<Transaction> getAllTransByCustomer(Long customerId);
 
