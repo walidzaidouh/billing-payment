@@ -29,9 +29,8 @@ public class Caisse extends BusinessObject {
     @Column(name = "SOLDE")
     private BigDecimal solde;
 
-    @ManyToOne
-    @JoinColumn(name = "PDV_ID")
-    private PointDeVente pdv;
+    @Column(name = "PDV_ID")
+    private Long pdvId;
 
     @Column(name = "IS_CLOSED")
     private boolean isClosed;

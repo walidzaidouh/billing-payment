@@ -40,4 +40,9 @@ public class CaisseServiceImpl implements CaisseService {
     public Caisse getById(Long id) {
         return caisseRepository.findById(id).get();
     }
+
+    @Override
+    public Caisse save(Caisse caisse) {
+        return caisseRepository.save(caisse);
+    }
 }

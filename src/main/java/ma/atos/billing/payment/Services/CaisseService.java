@@ -11,4 +11,6 @@ public interface CaisseService {
     boolean ouvrirCaisse(Long id ) ;
 
     Caisse getById(Long id) ;
+
+    Caisse save(Caisse caisse);
 }
