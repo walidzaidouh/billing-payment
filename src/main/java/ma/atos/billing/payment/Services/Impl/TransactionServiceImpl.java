@@ -13,17 +13,22 @@ public class TransactionServiceImpl implements TransactionService {
 
 
     @Override
-    public Transaction getTransactionByID() {
+    public Transaction createTransaction(Transaction transaction) {
         return null;
     }
 
     @Override
-    public List<Transaction> getTransactionByClient(Long id) {
+    public List<Transaction> getAllTransByCustomer(Long customerId) {
         return List.of();
     }
 
     @Override
-    public BigDecimal getTransactionAmount(Long id) {
-        return null;
+    public List<Transaction> getAllTransactionByPV(Long pvId) {
+        return List.of();
+    }
+
+    @Override
+    public List<Transaction> getAllTransactionByCreancier(Long CreancierId) {
+        return List.of();
     }
 }

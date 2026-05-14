@@ -8,9 +8,12 @@ import java.util.List;
 
 public interface TransactionService {
 
-    Transaction getTransactionByID()  ;
+    Transaction createTransaction(Transaction transaction);
 
-    List<Transaction> getTransactionByClient(Long id ) ;
+    List<Transaction> getAllTransByCustomer(Long customerId);
 
-    BigDecimal getTransactionAmount(Long id) ;
+    List<Transaction> getAllTransactionByPV( Long pvId);
+
+    List<Transaction> getAllTransactionByCreancier( Long CreancierId);
+
 }
