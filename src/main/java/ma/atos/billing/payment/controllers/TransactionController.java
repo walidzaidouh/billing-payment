@@ -4,6 +4,7 @@ package ma.atos.billing.payment.controllers;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import ma.atos.billing.payment.dto.TransactionDTO;
 import ma.atos.billing.payment.services.TransactionService;
 import ma.atos.billing.payment.models.Caisse;
 import ma.atos.billing.payment.models.Customer;
@@ -24,7 +25,7 @@ public class TransactionController {
 
     @Operation(summary = "Get transaction by ID")
     @GetMapping("/{id}")
-    public ResponseEntity<Transaction> getById(@PathVariable Long id) {
+    public ResponseEntity<TransactionDTO> getById(@PathVariable Long id) {
 
         return ResponseEntity.ok(
                 transactionService.getTransactionByID(id)
@@ -33,7 +34,7 @@ public class TransactionController {
 
     @Operation(summary = "Create a new transaction")
     @PostMapping("/create")
-    public ResponseEntity<Transaction> create(
+    public ResponseEntity<TransactionDTO> create(
             @RequestBody Transaction transaction
     ) {
 
@@ -44,7 +45,7 @@ public class TransactionController {
 
     @Operation(summary = "Get all transactions for a customer")
     @GetMapping("/customer/{customerId}")
-    public ResponseEntity<List<Transaction>> getByCustomer(
+    public ResponseEntity<List<TransactionDTO>> getByCustomer(
             @PathVariable Long customerId
     ) {
 
@@ -58,7 +59,7 @@ public class TransactionController {
 
     @Operation(summary = "Get all transactions for a caisse")
     @GetMapping("/caisse/{caisseId}")
-    public ResponseEntity<List<Transaction>> getByCaisse(
+    public ResponseEntity<List<TransactionDTO>> getByCaisse(
             @PathVariable Long caisseId
     ) {
 

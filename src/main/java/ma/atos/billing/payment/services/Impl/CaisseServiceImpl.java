@@ -1,6 +1,8 @@
 package ma.atos.billing.payment.services.Impl;
 
 import lombok.RequiredArgsConstructor;
+import ma.atos.billing.payment.dto.CaisseDTO;
+import ma.atos.billing.payment.mappers.CaisseMapper;
 import ma.atos.billing.payment.repositories.CaisseRepository;
 import ma.atos.billing.payment.services.CaisseService;
 import ma.atos.billing.payment.services.RecService;
@@ -16,13 +18,14 @@ public class CaisseServiceImpl implements CaisseService {
 
     private final CaisseRepository caisseRepository;
     private final RecService recService;
+    private final CaisseMapper caisseMapper;
 
     @Override
     public boolean fermerCaisse(Long id, BigDecimal soldeFin) {
 
-        Caisse caisse = caisseRepository.findById(id)
+        CaisseDTO caisse = caisseMapper.toCaisseDto(caisseRepository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Caisse not found with id : " + id));
+                        new RuntimeException("Caisse not found with id : " + id)));
 
         boolean output = caisseRepository.closeCaisse(id) > 0;
 
@@ -40,17 +43,17 @@ public class CaisseServiceImpl implements CaisseService {
     }
 
     @Override
-    public Caisse getById(Long id) {
+    public CaisseDTO getById(Long id) {
 
-        return caisseRepository.findById(id)
+        return caisseMapper.toCaisseDto(caisseRepository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Caisse not found with id : " + id));
+                        new RuntimeException("Caisse not found with id : " + id)));
     }
 
     @Override
-    public Caisse save(Caisse caisse) {
+    public CaisseDTO save(Caisse caisse) {
 
-        return caisseRepository.save(caisse);
+        return caisseMapper.toCaisseDto(caisseRepository.save(caisse));
     }
 
     @Override

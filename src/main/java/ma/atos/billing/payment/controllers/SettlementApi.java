@@ -2,6 +2,8 @@ package ma.atos.billing.payment.controllers;
 
 
 import lombok.AllArgsConstructor;
+import ma.atos.billing.payment.dto.CaisseDTO;
+import ma.atos.billing.payment.dto.ReconciliationDTO;
 import ma.atos.billing.payment.services.CaisseService;
 import ma.atos.billing.payment.services.RecService;
 import ma.atos.billing.payment.models.Caisse;
@@ -23,11 +25,11 @@ public class SettlementApi {
     private final RecService recService;
 
     @PostMapping("/settle")
-    public Reconciliation executeStlm(
+    public ReconciliationDTO executeStlm(
             @RequestParam Long idCaisse,
             @RequestParam BigDecimal soldeFin
     ) {
-        Caisse caisse = caisseService.getById(idCaisse);
+        CaisseDTO caisse = caisseService.getById(idCaisse);
         return recService.executeStlm(caisse, soldeFin);
     }
 }

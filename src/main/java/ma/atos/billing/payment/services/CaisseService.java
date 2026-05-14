@@ -1,5 +1,6 @@
 package ma.atos.billing.payment.services;
 
+import ma.atos.billing.payment.dto.CaisseDTO;
 import ma.atos.billing.payment.models.Caisse;
 
 import java.math.BigDecimal;
@@ -10,9 +11,9 @@ public interface CaisseService {
 
     boolean ouvrirCaisse(Long id ) ;
 
-    Caisse getById(Long id) ;
+    CaisseDTO getById(Long id) ;
 
-    Caisse save(Caisse caisse);
+    CaisseDTO save(Caisse caisse);
 
     void delete(Long id);
 }

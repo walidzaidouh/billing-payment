@@ -1,6 +1,12 @@
 package ma.atos.billing.payment.services.Impl;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import ma.atos.billing.payment.dto.CaisseDTO;
+import ma.atos.billing.payment.dto.ReconciliationDTO;
+import ma.atos.billing.payment.dto.TransactionDTO;
+import ma.atos.billing.payment.mappers.CaisseMapper;
+import ma.atos.billing.payment.mappers.ReconciliationMapper;
 import ma.atos.billing.payment.repositories.ReconciliationRepository;
 import ma.atos.billing.payment.services.RecService;
 import ma.atos.billing.payment.enums.OperationType;
@@ -14,20 +20,22 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class RecServiceImpl implements RecService {
 
     private final ReconciliationRepository reconciliationRepository;
-
+    private final  CaisseMapper caisseMapper;
+    private final ReconciliationMapper reconciliationMapper;
 
     @Override
-    public Reconciliation executeStlm(Caisse caisse, BigDecimal soldeFin) {
+    public ReconciliationDTO executeStlm(CaisseDTO caisse, BigDecimal soldeFin) {
 
-        List<Transaction> transactions = caisse.getTransactions();
+        List<TransactionDTO> transactions = caisse.getTransactions();
 
         BigDecimal amountDebit = BigDecimal.ZERO;
         BigDecimal amountCredit = BigDecimal.ZERO;
 
-        for (Transaction t : transactions) {
+        for (TransactionDTO t : transactions) {
 
             if (t.getOperationType() == OperationType.CREDIT) {
                 amountCredit = amountCredit.add(t.getMontant());
@@ -44,13 +52,14 @@ public class RecServiceImpl implements RecService {
         boolean isCorrect =
                 calculatedSolde.compareTo(soldeFin) == 0;
 
+        Caisse caisseEn = caisseMapper.toCaisseEntity(caisse);
         Reconciliation rec = Reconciliation.builder()
-                .caisse(caisse)
+                .caisse(caisseEn)
                 .totalDebit(amountDebit)
                 .totalCredit(amountCredit)
                 .isCorrect(isCorrect)
                 .build();
 
-        return reconciliationRepository.save(rec);
+        return reconciliationMapper.toDto(reconciliationRepository.save(rec));
     }
 }

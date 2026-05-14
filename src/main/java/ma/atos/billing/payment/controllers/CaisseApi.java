@@ -3,6 +3,7 @@ package ma.atos.billing.payment.controllers;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import ma.atos.billing.payment.dto.CaisseDTO;
 import ma.atos.billing.payment.services.CaisseService;
 import ma.atos.billing.payment.models.Caisse;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class CaisseApi {
 
     @Operation(summary = "Create a new caisse")
     @PostMapping("/create")
-    public ResponseEntity<Caisse> ajouterCaisse(
+    public ResponseEntity<CaisseDTO> ajouterCaisse(
             @RequestBody Caisse caisse
     ) {
 
@@ -31,7 +32,7 @@ public class CaisseApi {
 
     @Operation(summary = "Get caisse by ID")
     @GetMapping("/{id}")
-    public ResponseEntity<Caisse> getById(
+    public ResponseEntity<CaisseDTO> getById(
             @PathVariable Long id
     ) {
 
