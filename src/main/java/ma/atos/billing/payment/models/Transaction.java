@@ -27,4 +27,9 @@ public class Transaction extends BusinessObject {
     @Enumerated(EnumType.STRING)
     @Column(name = "OPERATION_TYPE")
     private OperationType operationType;
+
+
+
+
+
 }

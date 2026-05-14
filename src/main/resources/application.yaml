@@ -6,7 +6,7 @@ spring:
     username: root
     password: eSFHR9u2mbBVLLDJtSG3
     driver-class-name: org.postgresql.Driver
-
+    cache: false
   jpa:
     hibernate:
       ddl-auto: update
