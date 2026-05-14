@@ -13,7 +13,7 @@ spring:
   datasource:
     url: jdbc:postgresql://149.56.107.189:5432/db_formation
     username: root
-    password:
+    password: eSFHR9u2mbBVLLDJtSG3
     driver-class-name: org.postgresql.Driver
     cache: false
   jpa:
