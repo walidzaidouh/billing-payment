@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ma.atos.billing.payment.enums.OperationType;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 @Entity
@@ -22,7 +23,7 @@ public class Transaction extends BusinessObject {
     private Date date;
 
     @Column(name = "MONTANT")
-    private Double montant;
+    private BigDecimal montant;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "OPERATION_TYPE")

@@ -1,0 +1,3 @@
+ALTER TABLE transaction
+ALTER COLUMN montant TYPE NUMERIC(19,2)
+USING montant::NUMERIC;
