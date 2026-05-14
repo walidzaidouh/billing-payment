@@ -1,10 +1,19 @@
 spring:
   application:
     name: billing-payment
+#  cloud:
+#    vault:
+#      uri: http://localhost:32768/
+#      token:
+#      kv:
+#        enabled: true
+#        backend: secret
+#        default-context: application
+
   datasource:
     url: jdbc:postgresql://149.56.107.189:5432/db_formation
     username: root
-    password: eSFHR9u2mbBVLLDJtSG3
+    password:
     driver-class-name: org.postgresql.Driver
     cache: false
   jpa:
