@@ -12,6 +12,11 @@ public interface TransactionService {
 
     List<Transaction> getAllTransactionByPV( Long pvId);
 
-    List<Transaction> getAllTransactionByCreancier( Long CreancierId);
+    List<Transaction> getAllTransactionByCreancier(Long CreancierId);
+
+    List<Transaction> getAllTransByCustomer(Long customerId);
+
+
+
 
 }

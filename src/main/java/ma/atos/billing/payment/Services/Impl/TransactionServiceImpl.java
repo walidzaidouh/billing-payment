@@ -55,4 +55,9 @@ public class TransactionServiceImpl implements TransactionService {
     public List<Transaction> getAllTransactionByCreancier(Long CreancierId) {
         return transactionRepository.findByCreancierId(CreancierId);
     }
+
+    @Override
+    public List<Transaction> getAllTransByCustomer(Long customerId) {
+        return transactionRepository.findByCustomerId(customerId);
+    }
 }

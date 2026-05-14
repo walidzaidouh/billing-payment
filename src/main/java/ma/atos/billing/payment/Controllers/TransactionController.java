@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/Transactions")
 @RequiredArgsConstructor
@@ -30,24 +32,9 @@ public class TransactionController {
     public List<Transaction> getTransactionsByCreancier(@PathVariable Long creancierId) {
         return transactionService.getAllTransactionByCreancier(creancierId);
     }
-    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @GetMapping("/customer/{id}")
+    public List<Transaction> getTransactionsByCustomer(@PathVariable Long id){
+        return transactionService.getAllTransByCustomer(id);
+    }
 }
