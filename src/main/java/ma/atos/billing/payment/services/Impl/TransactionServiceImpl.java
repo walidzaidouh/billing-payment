@@ -17,7 +17,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-@RequiredArgsConstructor
+
 public class TransactionServiceImpl implements TransactionService {
 
     private final TransactionRepository transactionRepository;

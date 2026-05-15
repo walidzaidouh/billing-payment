@@ -4,15 +4,17 @@ import ma.atos.billing.payment.dto.TransactionDTO;
 import ma.atos.billing.payment.models.Transaction;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+
+
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface TransactionMapper {
 
-    @Mapping(source = "caisse.id", target = "caisseId")
+
     TransactionDTO toDto(Transaction entity);
 
-    @Mapping(source = "caisseId", target = "caisse.id")
+
     Transaction toEntity(TransactionDTO dto);
 
     List<TransactionDTO> toDtoList(List<Transaction> entities);

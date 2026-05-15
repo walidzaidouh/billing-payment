@@ -13,6 +13,7 @@ import ma.atos.billing.payment.enums.OperationType;
 import ma.atos.billing.payment.models.Caisse;
 import ma.atos.billing.payment.models.Reconciliation;
 import ma.atos.billing.payment.models.Transaction;
+import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -20,12 +21,11 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class RecServiceImpl implements RecService {
 
     private final ReconciliationRepository reconciliationRepository;
-    private final  CaisseMapper caisseMapper;
-    private final ReconciliationMapper reconciliationMapper;
+    private  final CaisseMapper caisseMapper ;
+    private final ReconciliationMapper reconciliationMapper  ;
 
     @Override
     public ReconciliationDTO executeStlm(CaisseDTO caisse, BigDecimal soldeFin) {

@@ -5,7 +5,7 @@ import ma.atos.billing.payment.models.Customer;
 import org.mapstruct.Mapper;
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CustomerMapper {
 
     CustomerDTO toDto(Customer entity);

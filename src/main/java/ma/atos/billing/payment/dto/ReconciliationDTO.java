@@ -18,11 +18,11 @@ public class ReconciliationDTO {
 
     private Long id;
 
-    private Long caisseId;
+    private CaisseDTO caisse;
 
     private BigDecimal totalDebit;
     private BigDecimal totalCredit;
 
-    private boolean correct;
+    private boolean isCorrect;
 }
 

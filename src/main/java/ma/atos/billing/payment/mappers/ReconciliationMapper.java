@@ -10,12 +10,11 @@ import java.util.List;
 public interface ReconciliationMapper {
 
 
-    @Mapping(source = "caisse.id", target = "caisseId")
-    @Mapping(source = "isCorrect", target = "correct")
+
     ReconciliationDTO toDto(Reconciliation entity);
 
-    @Mapping(source = "caisseId", target = "caisse.id")
-    @Mapping(source = "correct", target = "isCorrect")
+
+
     Reconciliation toEntity(ReconciliationDTO dto);
 
 
