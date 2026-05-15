@@ -8,6 +8,8 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
+
 
 @Mapper(componentModel = "spring", uses = {TransactionMapper.class})
 
@@ -18,4 +20,7 @@ public interface CaisseMapper {
 
     Caisse toCaisseEntity(CaisseDTO caisseDTO);
 
+    List<CaisseDTO> toCaisseDtoList(List<Caisse> caisses);
+
+    List<Caisse> toCaisseList(List<CaisseDTO> caisseDTOS);
 }

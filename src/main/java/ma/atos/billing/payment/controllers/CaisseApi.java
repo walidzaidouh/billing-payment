@@ -38,7 +38,6 @@ public class CaisseApi {
     public ResponseEntity<CaisseDTO> getById(
             @PathVariable Long id
     ) {
-
         return ResponseEntity.ok(
                 caisseService.getById(id)
         );

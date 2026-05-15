@@ -19,5 +19,5 @@ public class TransactionDTO {
     private BigDecimal montant;
     private OperationType operationType;
     private Long caisseId;
-
+    private Long pdvId;
 }

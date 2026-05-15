@@ -93,4 +93,5 @@ public class TransactionServiceImpl implements TransactionService {
     public List<TransactionDTO> findByCustomerId(Long customerId) {
         return transactionMapper.toDtoList(transactionRepository.findByCustomerId(customerId));
     }
+
 }

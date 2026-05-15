@@ -13,6 +13,7 @@ import ma.atos.billing.payment.models.Caisse;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @Service
@@ -43,6 +44,13 @@ public class CaisseServiceImpl implements CaisseService {
     public boolean openRegister(Long id) {
 
         return caisseRepository.openCaisse(id) > 0;
+    }
+
+    @Override
+    public List<CaisseDTO> getAll() {
+
+        return caisseMapper.toCaisseDtoList(caisseRepository.findAll());
+
     }
 
     @Override
