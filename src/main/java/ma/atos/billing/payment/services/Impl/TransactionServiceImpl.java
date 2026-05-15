@@ -63,6 +63,7 @@ public class TransactionServiceImpl implements TransactionService {
                 .orElseThrow(() -> new RuntimeException("Caisse not found"));
 
         Transaction transaction = Transaction.builder()
+
                 .montant(dto.getMontant())
                 .operationType(dto.getOperationType())
                 .caisse(caisse)
@@ -70,6 +71,7 @@ public class TransactionServiceImpl implements TransactionService {
                 .pvId(dto.getPvId())
                 .creancierId(dto.getCreancierId())
                 .build();
+
 
         if(transaction.getOperationType() == OperationType.CREDIT){
             caisse.setSolde(caisse.getSolde().add(transaction.getMontant()));

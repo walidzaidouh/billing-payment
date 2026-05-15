@@ -7,6 +7,7 @@ import ma.atos.billing.payment.dto.ReconciliationDTO;
 import ma.atos.billing.payment.dto.TransactionDTO;
 import ma.atos.billing.payment.mappers.CaisseMapper;
 import ma.atos.billing.payment.mappers.ReconciliationMapper;
+import ma.atos.billing.payment.repositories.CaisseRepository;
 import ma.atos.billing.payment.repositories.ReconciliationRepository;
 import ma.atos.billing.payment.services.RecService;
 import ma.atos.billing.payment.enums.OperationType;
@@ -26,6 +27,8 @@ public class RecServiceImpl implements RecService {
     private final ReconciliationRepository reconciliationRepository;
     private  final CaisseMapper caisseMapper ;
     private final ReconciliationMapper reconciliationMapper  ;
+
+    private final CaisseRepository caisseRepository ;
 
     @Override
     public ReconciliationDTO executeStlm(CaisseDTO caisse, BigDecimal soldeFin) {
@@ -52,7 +55,8 @@ public class RecServiceImpl implements RecService {
         boolean isCorrect =
                 calculatedSolde.compareTo(soldeFin) == 0;
 
-        Caisse caisseEn = caisseMapper.toCaisseEntity(caisse);
+        Caisse caisseEn = caisseRepository.findById(caisse.getId())
+                .orElseThrow(() -> new RuntimeException("Caisse not found with id: " + caisse.getId()));
         Reconciliation rec = Reconciliation.builder()
                 .caisse(caisseEn)
                 .totalDebit(amountDebit)
