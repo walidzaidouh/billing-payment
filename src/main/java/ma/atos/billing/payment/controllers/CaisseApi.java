@@ -48,7 +48,7 @@ public class CaisseApi {
     ) {
 
         return ResponseEntity.ok(
-                caisseService.ouvrirCaisse(id)
+                caisseService.openRegister(id)
         );
     }
 
