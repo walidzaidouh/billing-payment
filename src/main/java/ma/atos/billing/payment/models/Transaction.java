@@ -19,9 +19,6 @@ import java.sql.Date;
 @Data
 public class Transaction extends BusinessObject {
 
-    @Column(name = "DATE")
-    private Date date;
-
     @Column(name = "MONTANT")
     private BigDecimal montant;
 
@@ -36,8 +33,11 @@ public class Transaction extends BusinessObject {
     @Column(name = "CUSTOMER_ID")
     private Long customerId;
 
+    @Column(name = "PV_ID")
+    private Long pvId;
 
-
+    @Column(name = "CREANCIER_ID")
+    private Long creancierId;
 
 
 }

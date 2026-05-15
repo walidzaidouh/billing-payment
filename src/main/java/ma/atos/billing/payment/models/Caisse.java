@@ -19,7 +19,6 @@ import java.util.List;
 public class Caisse extends BusinessObject {
 
 
-
     @Column(name = "MONTANT_DEPART")
     private BigDecimal montantDepart;
 

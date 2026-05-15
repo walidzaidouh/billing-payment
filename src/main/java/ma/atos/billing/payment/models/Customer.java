@@ -15,7 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Data
-@Entity
 public class Customer extends BusinessObject {
 
     @Column(name = "PRENOM")

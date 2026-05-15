@@ -4,7 +4,9 @@ package ma.atos.billing.payment.services.Impl;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import ma.atos.billing.payment.dto.TransactionDTO;
+import ma.atos.billing.payment.enums.OperationType;
 import ma.atos.billing.payment.mappers.TransactionMapper;
+import ma.atos.billing.payment.repositories.CaisseRepository;
 import ma.atos.billing.payment.repositories.TransactionRepository;
 import ma.atos.billing.payment.services.TransactionService;
 import ma.atos.billing.payment.models.Caisse;
@@ -22,6 +24,10 @@ public class TransactionServiceImpl implements TransactionService {
 
     private final TransactionRepository transactionRepository;
     private final TransactionMapper transactionMapper;
+    private final CaisseRepository caisseRepository;
+
+
+
     @Override
     public TransactionDTO getTransactionByID(Long id) {
 
@@ -51,7 +57,12 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionDTO save(Transaction transaction) {
+        Caisse caisse =transaction.getCaisse();
+        if(transaction.getOperationType() == OperationType.CREDIT){
+            caisse.setSolde(caisse.getSolde().add(transaction.getMontant()));
+        }else caisse.setSolde(caisse.getSolde().subtract(transaction.getMontant()));
 
+        transaction.setCaisse(caisse);
         return transactionMapper.toDto(transactionRepository.save(transaction));
     }
 
