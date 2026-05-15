@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
+@Entity
 public class PointDeVente extends BusinessObject {
 
     @Column(name = "NAME")

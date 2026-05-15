@@ -60,7 +60,7 @@ public class CaisseApi {
     ) {
 
         return ResponseEntity.ok(
-                caisseService.fermerCaisse(id, soldeFin)
+                caisseService.closeRegister(id, soldeFin)
         );
     }
 
