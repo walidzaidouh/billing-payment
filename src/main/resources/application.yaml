@@ -1,21 +1,31 @@
 spring:
+  port: 8082
   application:
     name: billing-payment
-#  cloud:
-#    vault:
-#      uri: http://localhost:32768/
-#      token:
-#      kv:
-#        enabled: true
-#        backend: secret
-#        default-context: application
+
+  config:
+    import:
+      - "optional:configserver:"
+      - "optional:vault://"
+
+  cloud:
+    vault:
+      uri: http://localhost:8200 # votre URL
+      authentication: TOKEN
+      token: ${VAULT_TOKEN:root} # Votre valeur de Token
+      kv:
+        enabled: true
+        backend: secret
+        default-context: billing-payment
+        application-name: billing-payment
 
   datasource:
-    url: jdbc:postgresql://149.56.107.189:5432/db_formation
-    username: root
-    password: eSFHR9u2mbBVLLDJtSG3
+    url: ${spring.datasource.url:}
+    username: ${spring.datasource.username:}
+    password: ${spring.datasource.password:}
     driver-class-name: org.postgresql.Driver
     cache: false
+
   jpa:
     hibernate:
       ddl-auto: none
@@ -24,8 +34,7 @@ spring:
       hibernate:
         format_sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-  config:
-    import: optional:configserver://
+
   flyway:
     enabled: true
     schemas: payment
