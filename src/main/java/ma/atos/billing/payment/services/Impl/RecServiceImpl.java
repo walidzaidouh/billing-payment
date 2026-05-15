@@ -1,7 +1,6 @@
 package ma.atos.billing.payment.services.Impl;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import ma.atos.billing.payment.dto.CaisseDTO;
 import ma.atos.billing.payment.dto.ReconciliationDTO;
 import ma.atos.billing.payment.dto.TransactionDTO;
@@ -13,8 +12,7 @@ import ma.atos.billing.payment.services.RecService;
 import ma.atos.billing.payment.enums.OperationType;
 import ma.atos.billing.payment.models.Caisse;
 import ma.atos.billing.payment.models.Reconciliation;
-import ma.atos.billing.payment.models.Transaction;
-import org.mapstruct.factory.Mappers;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -32,8 +30,9 @@ public class RecServiceImpl implements RecService {
 
     @Override
     public ReconciliationDTO executeStlm(CaisseDTO caisse, BigDecimal soldeFin) {
-
-        List<TransactionDTO> transactions = caisse.getTransactions();
+        if (!caisse.isClosed()) {
+            throw new IllegalStateException("Caisse must be closed before reconciliation");
+        }        List<TransactionDTO> transactions = caisse.getTransactions();
 
         BigDecimal amountDebit = BigDecimal.ZERO;
         BigDecimal amountCredit = BigDecimal.ZERO;
@@ -52,8 +51,7 @@ public class RecServiceImpl implements RecService {
                         .add(amountCredit)
                         .subtract(amountDebit);
 
-        boolean isCorrect =
-                calculatedSolde.compareTo(soldeFin) == 0;
+        boolean isCorrect =(calculatedSolde.equals(soldeFin));
 
         Caisse caisseEn = caisseRepository.findById(caisse.getId())
                 .orElseThrow(() -> new RuntimeException("Caisse not found with id: " + caisse.getId()));
