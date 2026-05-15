@@ -6,9 +6,9 @@ import java.math.BigDecimal;
 
 public interface CaisseService {
 
-    boolean fermerCaisse (Long id, BigDecimal soldeFin) ;
+    boolean closeRegister(Long id, BigDecimal soldeFin) ;
 
-    boolean ouvrirCaisse(Long id ) ;
+    boolean openRegister(Long id ) ;
 
     Caisse getById(Long id) ;
 

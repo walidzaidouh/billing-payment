@@ -18,7 +18,7 @@ public class CaisseServiceImpl implements CaisseService {
     private final RecService recService;
 
     @Override
-    public boolean fermerCaisse(Long id, BigDecimal soldeFin) {
+    public boolean closeRegister(Long id, BigDecimal soldeFin) {
 
         Caisse caisse = caisseRepository.findById(id)
                 .orElseThrow(() ->
@@ -34,7 +34,7 @@ public class CaisseServiceImpl implements CaisseService {
     }
 
     @Override
-    public boolean ouvrirCaisse(Long id) {
+    public boolean openRegister(Long id) {
 
         return caisseRepository.openCaisse(id) > 0;
     }
