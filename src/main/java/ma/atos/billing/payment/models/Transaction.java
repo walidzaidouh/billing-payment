@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 
 @Entity
-@Table(name = "TRANSACTION", schema = "payment")
+@Table(name = "transactions", schema = "payment")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -38,6 +38,9 @@ public class Transaction extends BusinessObject {
 
     @Column(name = "CREANCIER_ID")
     private Long creancierId;
+
+
+
 
 
 }

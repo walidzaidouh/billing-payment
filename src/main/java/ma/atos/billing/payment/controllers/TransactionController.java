@@ -4,6 +4,7 @@ package ma.atos.billing.payment.controllers;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import ma.atos.billing.payment.dto.TransactionCreationDTO;
 import ma.atos.billing.payment.dto.TransactionDTO;
 import ma.atos.billing.payment.services.TransactionService;
 import ma.atos.billing.payment.models.Caisse;
@@ -35,11 +36,11 @@ public class TransactionController {
     @Operation(summary = "Create a new transaction")
     @PostMapping("/create")
     public ResponseEntity<TransactionDTO> create(
-            @RequestBody Transaction transaction
+            @RequestBody TransactionCreationDTO dto
     ) {
 
         return ResponseEntity.ok(
-                transactionService.save(transaction)
+                transactionService.save(dto)
         );
     }
 

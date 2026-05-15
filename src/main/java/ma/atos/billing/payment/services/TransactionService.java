@@ -1,6 +1,7 @@
 package ma.atos.billing.payment.services;
 
 
+import ma.atos.billing.payment.dto.TransactionCreationDTO;
 import ma.atos.billing.payment.dto.TransactionDTO;
 import ma.atos.billing.payment.models.Caisse;
 import ma.atos.billing.payment.models.Customer;
@@ -18,7 +19,7 @@ public interface TransactionService {
 
 
     List<TransactionDTO> getTrasactionByCaisse(Caisse caisse ) ;
-    TransactionDTO save(Transaction transaction);
+    TransactionDTO save(TransactionCreationDTO dto);
 
     void delete(Long id);
 

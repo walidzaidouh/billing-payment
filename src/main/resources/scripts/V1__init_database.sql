@@ -1,75 +1,82 @@
--- Create schema
-CREATE SCHEMA IF NOT EXISTS payment;
+
+
 
 -- =========================================
 -- GLOBAL SEQUENCE
 -- =========================================
-CREATE SEQUENCE IF NOT EXISTS payment.GLOBAL_SEQUENCE
+CREATE SEQUENCE payment.global_sequence
     START WITH 1
     INCREMENT BY 1;
 
 -- =========================================
 -- TABLE: CAISSE
 -- =========================================
-CREATE TABLE payment.CAISSE (
-                                ID BIGINT PRIMARY KEY DEFAULT nextval('payment.GLOBAL_SEQUENCE'),
+CREATE TABLE payment.caisse (
+                                id BIGINT PRIMARY KEY DEFAULT nextval('payment.global_sequence'),
 
-                                CREATED_DATE DATE,
-                                UPDATED_DATE TIMESTAMP,
+                                created_date TIMESTAMP,
+                                updated_date TIMESTAMP,
 
-                                MONTANT_DEPART NUMERIC(19,2),
-                                SOLDE NUMERIC(19,2),
-                                PDV_ID BIGINT,
-                                IS_CLOSED BOOLEAN
+                                montant_depart NUMERIC(19,2),
+                                solde NUMERIC(19,2),
+                                pdv_id BIGINT,
+                                is_closed BOOLEAN
 );
 
 -- =========================================
 -- TABLE: RECONCILIATION
 -- =========================================
-CREATE TABLE payment.RECONCILIATION (
-                                        ID BIGINT PRIMARY KEY DEFAULT nextval('payment.GLOBAL_SEQUENCE'),
+CREATE TABLE payment.reconciliation (
+                                        id BIGINT PRIMARY KEY DEFAULT nextval('payment.global_sequence'),
 
-                                        CREATED_DATE DATE,
-                                        UPDATED_DATE TIMESTAMP,
+                                        created_date TIMESTAMP,
+                                        updated_date TIMESTAMP,
 
-                                        TOTAL_DEBIT NUMERIC(19,2),
-                                        TOTAL_CREDIT NUMERIC(19,2),
-                                        IS_CORRECT BOOLEAN,
+                                        total_debit NUMERIC(19,2),
+                                        total_credit NUMERIC(19,2),
+                                        is_correct BOOLEAN,
 
-                                        CAISSE_ID BIGINT,
+                                        caisse_id BIGINT,
 
-                                        CONSTRAINT FK_RECONCILIATION_CAISSE
-                                            FOREIGN KEY (CAISSE_ID)
-                                                REFERENCES payment.CAISSE(ID)
+                                        CONSTRAINT fk_reconciliation_caisse
+                                            FOREIGN KEY (caisse_id)
+                                                REFERENCES payment.caisse(id)
 );
 
 -- =========================================
--- TABLE: TRANSACTION
+-- TABLE: TRANSACTIONS ✅ (FIXED NAME)
 -- =========================================
--- WARNING: TRANSACTION is a reserved keyword → quoted
-CREATE TABLE payment."TRANSACTION" (
-                                       ID BIGINT PRIMARY KEY DEFAULT nextval('payment.GLOBAL_SEQUENCE'),
+CREATE TABLE payment.transactions (
+                                      id BIGINT PRIMARY KEY DEFAULT nextval('payment.global_sequence'),
 
-                                       CREATED_DATE DATE,
-                                       UPDATED_DATE TIMESTAMP,
+                                      created_date TIMESTAMP,
+                                      updated_date TIMESTAMP,
 
-                                       DATE TIMESTAMP,
-                                       MONTANT NUMERIC(19,2),
-                                       OPERATION_TYPE VARCHAR(50),
+                                      montant NUMERIC(19,2),
+                                      operation_type VARCHAR(50),
 
-                                       CAISSE_ID BIGINT,
-                                       CUSTOMER_ID BIGINT,
+                                      caisse_id BIGINT,
+                                      customer_id BIGINT,
 
-                                       CONSTRAINT FK_TRANSACTION_CAISSE
-                                           FOREIGN KEY (CAISSE_ID)
-                                               REFERENCES payment.CAISSE(ID)
+                                      pv_id BIGINT,
+                                      creancier_id BIGINT,
+
+                                      CONSTRAINT fk_transactions_caisse
+                                          FOREIGN KEY (caisse_id)
+                                              REFERENCES payment.caisse(id)
 );
 
 -- =========================================
--- INDEXES (recommended)
+-- INDEXES
 -- =========================================
-CREATE INDEX IDX_TRANSACTION_CAISSE_ID
-    ON payment."TRANSACTION"(CAISSE_ID);
+CREATE INDEX idx_transactions_caisse_id
+    ON payment.transactions(caisse_id);
 
-CREATE INDEX IDX_RECONCILIATION_CAISSE_ID
-    ON payment.RECONCILIATION(CAISSE_ID);
+CREATE INDEX idx_transactions_pv_id
+    ON payment.transactions(pv_id);
+
+CREATE INDEX idx_transactions_creancier_id
+    ON payment.transactions(creancier_id);
+
+CREATE INDEX idx_reconciliation_caisse_id
+    ON payment.reconciliation(caisse_id);

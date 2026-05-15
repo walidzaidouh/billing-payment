@@ -3,6 +3,7 @@ package ma.atos.billing.payment.controllers;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import ma.atos.billing.payment.dto.CaisseCreateDTO;
 import ma.atos.billing.payment.dto.CaisseDTO;
 import ma.atos.billing.payment.services.CaisseService;
 import ma.atos.billing.payment.models.Caisse;
@@ -19,14 +20,16 @@ public class CaisseApi {
 
     private final CaisseService caisseService;
 
+
+
     @Operation(summary = "Create a new caisse")
     @PostMapping("/create")
     public ResponseEntity<CaisseDTO> ajouterCaisse(
-            @RequestBody Caisse caisse
-    ) {
+            CaisseCreateDTO dto
 
+    ) {
         return ResponseEntity.ok(
-                caisseService.save(caisse)
+                caisseService.save(dto)
         );
     }
 
@@ -74,4 +77,7 @@ public class CaisseApi {
 
         return ResponseEntity.noContent().build();
     }
+
+
+
 }

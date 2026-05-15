@@ -13,6 +13,7 @@ import org.springframework.data.annotation.LastModifiedDate ;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 @Data
@@ -21,21 +22,21 @@ import java.sql.Date;
 @NoArgsConstructor
 public class BusinessObject {
 
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GLOBAL_SEQUENCE")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
     @SequenceGenerator(
-            name = "GLOBAL_SEQUENCE",
-            sequenceName = "GLOBAL_SEQUENCE",
+            name = "global_seq",
+            sequenceName = "payment.global_sequence",
             allocationSize = 1
     )
-    @Column(name = "ID")
     private Long id;
 
     @CreatedDate
     @Column(name = "CREATED_DATE")
-    private java.sql.Date createdDate;
+    private LocalDateTime createdDate;
 
     @LastModifiedDate
     @Column(name = "UPDATED_DATE")
-    private Date updatedDate;
+    private LocalDateTime updatedDate;
 }

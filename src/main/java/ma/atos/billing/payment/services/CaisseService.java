@@ -1,5 +1,6 @@
 package ma.atos.billing.payment.services;
 
+import ma.atos.billing.payment.dto.CaisseCreateDTO;
 import ma.atos.billing.payment.dto.CaisseDTO;
 import ma.atos.billing.payment.models.Caisse;
 
@@ -13,7 +14,7 @@ public interface CaisseService {
 
     CaisseDTO getById(Long id) ;
 
-    CaisseDTO save(Caisse caisse);
+    CaisseDTO save(CaisseCreateDTO caisse);
 
     void delete(Long id);
 }

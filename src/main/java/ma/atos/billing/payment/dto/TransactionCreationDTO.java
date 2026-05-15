@@ -1,23 +1,20 @@
 package ma.atos.billing.payment.dto;
 
-
-import lombok.*;
+import lombok.Data;
 import ma.atos.billing.payment.enums.OperationType;
 
-
 import java.math.BigDecimal;
-import java.sql.Date;
 
-
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Data
-public class TransactionDTO {
-
+public class TransactionCreationDTO {
 
     private BigDecimal montant;
     private OperationType operationType;
-    private Long caisseId;
 
+    private Long caisseId;     // instead of full object
+    private Long customerId;
+
+    private Long pvId;
+    private Long creancierId;
 }
+

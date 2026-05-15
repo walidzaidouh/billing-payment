@@ -37,7 +37,7 @@ public class RecServiceImpl implements RecService {
 
         for (TransactionDTO t : transactions) {
 
-            if (t.getOperationType() == OperationType.CREDIT) {
+            if (t.getOperationType() == OperationType.fromValue("credit")) {
                 amountCredit = amountCredit.add(t.getMontant());
             } else {
                 amountDebit = amountDebit.add(t.getMontant());

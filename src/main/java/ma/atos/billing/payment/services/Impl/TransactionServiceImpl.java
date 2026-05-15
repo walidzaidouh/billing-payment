@@ -3,6 +3,7 @@ package ma.atos.billing.payment.services.Impl;
 
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import ma.atos.billing.payment.dto.TransactionCreationDTO;
 import ma.atos.billing.payment.dto.TransactionDTO;
 import ma.atos.billing.payment.enums.OperationType;
 import ma.atos.billing.payment.mappers.TransactionMapper;
@@ -56,14 +57,28 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public TransactionDTO save(Transaction transaction) {
-        Caisse caisse =transaction.getCaisse();
+    public TransactionDTO save(TransactionCreationDTO dto) {
+
+        Caisse caisse = caisseRepository.findById(dto.getCaisseId())
+                .orElseThrow(() -> new RuntimeException("Caisse not found"));
+
+        Transaction transaction = Transaction.builder()
+                .montant(dto.getMontant())
+                .operationType(dto.getOperationType())
+                .caisse(caisse)
+                .customerId(dto.getCustomerId())
+                .pvId(dto.getPvId())
+                .creancierId(dto.getCreancierId())
+                .build();
+
         if(transaction.getOperationType() == OperationType.CREDIT){
             caisse.setSolde(caisse.getSolde().add(transaction.getMontant()));
         }else caisse.setSolde(caisse.getSolde().subtract(transaction.getMontant()));
 
         transaction.setCaisse(caisse);
         return transactionMapper.toDto(transactionRepository.save(transaction));
+
+
     }
 
     @Override

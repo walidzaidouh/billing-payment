@@ -1,8 +1,11 @@
 package ma.atos.billing.payment.services.Impl;
 
 import lombok.RequiredArgsConstructor;
+import ma.atos.billing.payment.dto.CaisseCreateDTO;
 import ma.atos.billing.payment.dto.CaisseDTO;
+import ma.atos.billing.payment.enums.OperationType;
 import ma.atos.billing.payment.mappers.CaisseMapper;
+import ma.atos.billing.payment.models.Transaction;
 import ma.atos.billing.payment.repositories.CaisseRepository;
 import ma.atos.billing.payment.services.CaisseService;
 import ma.atos.billing.payment.services.RecService;
@@ -51,9 +54,21 @@ public class CaisseServiceImpl implements CaisseService {
     }
 
     @Override
-    public CaisseDTO save(Caisse caisse) {
+    public CaisseDTO save(CaisseCreateDTO dto) {
 
-        return caisseMapper.toCaisseDto(caisseRepository.save(caisse));
+        Caisse caisse = Caisse.builder()
+                .montantDepart(dto.getMontantDepart())
+                .solde(dto.getSolde())
+                .pdvId(dto.getPdvId())
+                .isClosed(false)
+                .build();
+
+        Caisse saved = caisseRepository.save(caisse);
+
+
+
+        return caisseMapper.toCaisseDto(saved);
+
     }
 
     @Override

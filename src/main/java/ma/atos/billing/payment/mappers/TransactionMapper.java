@@ -12,6 +12,7 @@ import java.util.List;
 public interface TransactionMapper {
 
 
+    @Mapping(source = "caisse.id", target = "caisseId")
     TransactionDTO toDto(Transaction entity);
 
 
