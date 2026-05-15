@@ -6,6 +6,7 @@ import ma.atos.billing.payment.Services.CustomerService;
 import ma.atos.billing.payment.models.Customer;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -16,7 +17,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer createCustomer(Customer customer) {
-        customer.setCreatedDate(localDate.now());
         return customerRepository.save(customer);
     }
 
