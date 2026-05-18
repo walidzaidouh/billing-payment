@@ -7,7 +7,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ma.atos.billing.payment.enums.ModeReglement;
+import ma.atos.billing.payment.enums.PaymentType;
 import ma.atos.billing.payment.enums.StatusInvoice;
 
 import java.time.LocalDate;
@@ -38,7 +38,7 @@ public class InvoiceDto {
 
     private StatusInvoice status;
 
-    private ModeReglement modeReglement;
+    private PaymentType modeReglement;
 
     private String description;
 

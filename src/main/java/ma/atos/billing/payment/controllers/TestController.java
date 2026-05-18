@@ -14,6 +14,4 @@ public class TestController {
 
     public final InvoiceExternalProxy invoiceExternalProxy;
 
-    @GetMapping("/test")
-    public
 }

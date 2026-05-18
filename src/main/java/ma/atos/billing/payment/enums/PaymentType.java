@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public enum PaymentType {
 
-    CASH("Cash"),
-    CHECK("Check"),
-    TRANSFER("Bank Transfer");
+    ESPECE("ESPECE"),
+    CHEQUE("CHEQUE"),
+    VIREMENT("VIREMENT");
 
     private final String label;
 
