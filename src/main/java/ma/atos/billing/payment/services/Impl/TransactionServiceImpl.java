@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import ma.atos.billing.payment.dto.InvoiceDto;
 import ma.atos.billing.payment.dto.TransactionCreationDTO;
 import ma.atos.billing.payment.dto.TransactionDTO;
+import ma.atos.billing.payment.enums.ModeReglement;
 import ma.atos.billing.payment.enums.OperationType;
 import ma.atos.billing.payment.enums.PaymentType;
 import ma.atos.billing.payment.enums.StatusInvoice;
@@ -89,7 +90,9 @@ public class TransactionServiceImpl implements TransactionService {
         invoiceDto.setDateInvoice(LocalDate.now());
         invoiceDto.setCreancierId(dto.getCreancierId());
         invoiceDto.setCustomerId(dto.getCustomerId());
-        invoiceDto.setModeReglement(PaymentType.ESPECE);
+        invoiceDto.setModeReglement(ModeReglement.ESPECES);
+        invoiceDto.setPointDeVenteId(45L);
+        invoiceDto.setReference("2356L");
         invoiceDto.setStatus(StatusInvoice.EN_ATTENTE);
         invoiceExternalProxy.create(invoiceDto);
 

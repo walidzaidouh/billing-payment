@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public enum PaymentType {
 
-    ESPECE("ESPECE"),
+    ESPECES("ESPECES"),
     CHEQUE("CHEQUE"),
     VIREMENT("VIREMENT");
 
