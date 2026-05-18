@@ -41,3 +41,9 @@ spring:
     default-schema: payment
     baseline-on-migrate: true
     locations: classpath:scripts
+
+app:
+  feign-clients:
+    reference-service:
+      name: billing-invoice
+      url: http://localhost:8080
