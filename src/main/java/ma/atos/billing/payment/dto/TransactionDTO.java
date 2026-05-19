@@ -15,7 +15,7 @@ import java.sql.Date;
 @Data
 public class TransactionDTO {
 
-    private Long id  ;
+    private Long transactionId  ;
     private BigDecimal montant;
     private OperationType operationType;
     private Long caisseId;

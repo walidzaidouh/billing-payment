@@ -42,8 +42,17 @@ spring:
     baseline-on-migrate: true
     locations: classpath:scripts
 
+  rabbitmq:
+    host: 149.56.107.189
+    port: 5672
+    username: admin
+    password: AgQH5EFSTk8QeHNFwG3c
+    virtual-host: /
+
+
 app:
   feign-clients:
     reference-service:
       name: billing-invoice
       url: http://localhost:8080
+
