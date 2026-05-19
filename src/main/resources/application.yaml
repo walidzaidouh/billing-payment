@@ -8,21 +8,21 @@ spring:
       - "optional:configserver:"
       - "optional:vault://"
 
-  cloud:
-    vault:
-      uri: http://localhost:8200 # votre URL
-      authentication: TOKEN
-      token: ${VAULT_TOKEN:root} # Votre valeur de Token
-      kv:
-        enabled: true
-        backend: secret
-        default-context: billing-payment
-        application-name: billing-payment
+#  cloud:
+#    vault:
+#      uri: http://localhost:8200 # votre URL
+#      authentication: TOKEN
+#      token: ${VAULT_TOKEN:root} # Votre valeur de Token
+#      kv:
+#        enabled: true
+#        backend: secret
+#        default-context: billing-payment
+#        application-name: billing-payment
 
   datasource:
-    url: ${spring.datasource.url:}
-    username: ${spring.datasource.username:}
-    password: ${spring.datasource.password:}
+    url: jdbc:postgresql://149.56.107.189:5432/db_formation
+    username: root
+    password: eSFHR9u2mbBVLLDJtSG3
     driver-class-name: org.postgresql.Driver
     cache: false
 
@@ -41,6 +41,28 @@ spring:
     default-schema: payment
     baseline-on-migrate: true
     locations: classpath:scripts
+
+
+
+  rabbitmq:
+    host: 149.56.107.189
+    port: 5672
+    username: admin
+    password: AgQH5EFSTk8QeHNFwG3c
+    listener:
+      simple:
+        # Retry automatique avant envoi en DLQ
+        retry:
+          enabled: true
+          initial-interval: 2000    # 2s avant 1er retry
+          multiplier: 2             # backoff exponentiel
+          max-attempts: 3           # 3 tentatives max
+          max-interval: 10000       # plafond 10s
+        acknowledge-mode: auto # nack automatique en cas d'exception
+
+camunda.bpm.admin-user:
+  id: demo
+  password: demo
 
 app:
   feign-clients:

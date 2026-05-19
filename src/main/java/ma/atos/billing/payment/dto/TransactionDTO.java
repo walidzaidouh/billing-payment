@@ -16,8 +16,10 @@ import java.sql.Date;
 public class TransactionDTO {
 
     private Long id  ;
+    private Long InvoiceId ;
     private BigDecimal montant;
     private OperationType operationType;
     private Long caisseId;
     private Long pdvId;
+    private Long customerId ;
 }

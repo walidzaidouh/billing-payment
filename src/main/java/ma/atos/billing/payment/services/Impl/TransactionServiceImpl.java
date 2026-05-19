@@ -30,7 +30,7 @@ public class TransactionServiceImpl implements TransactionService {
     private final TransactionRepository transactionRepository;
     private final TransactionMapper transactionMapper;
     private final CaisseRepository caisseRepository;
-    public final InvoiceExternalProxy invoiceExternalProxy;
+    //public final InvoiceExternalProxy invoiceExternalProxy;
 
 
 
@@ -93,8 +93,8 @@ public class TransactionServiceImpl implements TransactionService {
         invoiceDto.setModeReglement(ModeReglement.ESPECES);
         invoiceDto.setPointDeVenteId(45L);
         invoiceDto.setReference("2356L");
-        invoiceDto.setStatus(StatusInvoice.EN_ATTENTE);
-        invoiceExternalProxy.create(invoiceDto);
+        invoiceDto.setStatus(StatusInvoice.DRAFT);
+        //invoiceExternalProxy.create(invoiceDto);
 
         return transactionMapper.toDto(transactionRepository.save(transaction));
 

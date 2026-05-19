@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import ma.atos.billing.payment.dto.TransactionCreationDTO;
 import ma.atos.billing.payment.dto.TransactionDTO;
+import ma.atos.billing.payment.services.Impl.CammundaTestService;
 import ma.atos.billing.payment.services.TransactionService;
 import ma.atos.billing.payment.models.Caisse;
 import ma.atos.billing.payment.models.Customer;
@@ -23,6 +24,9 @@ import java.util.List;
 public class TransactionController {
 
     private final TransactionService transactionService;
+
+    private final CammundaTestService cammundaService;
+
 
     @Operation(summary = "Get transaction by ID")
     @GetMapping("/{id}")
@@ -93,4 +97,14 @@ public class TransactionController {
 
         return ResponseEntity.noContent().build();
     }
+
+
+    @PostMapping("/validate")
+    public ResponseEntity<String> test(@RequestParam BigDecimal montant) {
+
+        cammundaService.testValidation(montant);
+
+        return ResponseEntity.ok("Process started");
+    }
+
 }

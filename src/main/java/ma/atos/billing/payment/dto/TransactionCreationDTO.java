@@ -1,11 +1,13 @@
 package ma.atos.billing.payment.dto;
 
+import lombok.Builder;
 import lombok.Data;
 import ma.atos.billing.payment.enums.OperationType;
 
 import java.math.BigDecimal;
 
 @Data
+@Builder
 public class TransactionCreationDTO {
 
     private BigDecimal montant;

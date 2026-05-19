@@ -1,8 +1,10 @@
 package ma.atos.billing.payment.enums;
 
 public enum StatusInvoice {
-    EN_ATTENTE,
-    PAYEE,
+    DRAFT,
+    PROCESSING,
+    PAID,
+    REJECTED,
     EN_RETARD,
     ANNULEE
 }

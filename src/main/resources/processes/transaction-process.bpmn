@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+    xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+    targetNamespace="TransactionProcess">
+
+  <bpmn:process id="transactionProcess" isExecutable="true"     camunda:historyTimeToLive="1">
+
+    <bpmn:startEvent id="start"/>
+
+    <bpmn:serviceTask id="validateTask"
+                      name="Validate Transaction"
+                      camunda:delegateExpression="${validateDelegate}" />
+
+    <bpmn:endEvent id="end"/>
+
+    <bpmn:sequenceFlow id="flow1" sourceRef="start" targetRef="validateTask"/>
+    <bpmn:sequenceFlow id="flow2" sourceRef="validateTask" targetRef="end"/>
+
+  </bpmn:process>
+
+</bpmn:definitions>
