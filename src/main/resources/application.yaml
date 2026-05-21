@@ -1,23 +1,28 @@
-spring:
+server:
   port: 8082
+
+spring:
   application:
     name: billing-payment
 
+
   config:
     import:
-      - "optional:configserver:"
-      - "optional:vault://"
+      - optional:vault://
 
-#  cloud:
-#    vault:
-#      uri: http://localhost:8200 # votre URL
-#      authentication: TOKEN
-#      token: ${VAULT_TOKEN:root} # Votre valeur de Token
-#      kv:
-#        enabled: true
-#        backend: secret
-#        default-context: billing-payment
-#        application-name: billing-payment
+
+  cloud:
+    config :
+      enabled: false
+    vault:
+      uri: http://localhost:8200
+      authentication: TOKEN
+      token: ${VAULT_TOKEN:root}
+      kv:
+        enabled: true
+        backend: secret
+        default-context: billing-payment
+        application-name: billing-payment
 
   datasource:
     url: jdbc:postgresql://149.56.107.189:5432/db_formation
@@ -41,9 +46,6 @@ spring:
     default-schema: payment
     baseline-on-migrate: true
     locations: classpath:scripts
-
-
-
   rabbitmq:
     host: 149.56.107.189
     port: 5672
@@ -61,8 +63,8 @@ spring:
         acknowledge-mode: auto # nack automatique en cas d'exception
 
 camunda.bpm.admin-user:
-  id: demo
-  password: demo
+   id: demo
+   password: demo
 
 app:
   feign-clients:

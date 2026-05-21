@@ -76,6 +76,18 @@ public class TransactionController {
         );
     }
 
+    @Operation(summary = "Get all transactions for a caisse")
+    @GetMapping()
+    public ResponseEntity<List<TransactionDTO>> getAll(
+    ) {
+
+
+
+        return ResponseEntity.ok(
+                transactionService.getAllTransactions()
+        );
+    }
+
     @Operation(summary = "Get transaction amount")
     @GetMapping("/{id}/amount")
     public ResponseEntity<BigDecimal> getAmount(

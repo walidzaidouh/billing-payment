@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/caisse")
@@ -40,6 +41,15 @@ public class CaisseApi {
     ) {
         return ResponseEntity.ok(
                 caisseService.getById(id)
+        );
+    }
+
+    @Operation(summary = "Get all caisses")
+    @GetMapping()
+    public ResponseEntity<List<CaisseDTO>> getAll(
+    ) {
+        return ResponseEntity.ok(
+                caisseService.getAll()
         );
     }
 

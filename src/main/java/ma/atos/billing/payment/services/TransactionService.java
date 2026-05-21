@@ -44,4 +44,5 @@ public interface TransactionService {
     })
     void delete(Long id);
 
+    List<TransactionDTO> getAllTransactions();
 }

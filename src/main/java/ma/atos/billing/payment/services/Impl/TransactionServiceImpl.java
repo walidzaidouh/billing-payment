@@ -108,6 +108,11 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
+    public List<TransactionDTO> getAllTransactions() {
+        return transactionMapper.toDtoList(transactionRepository.findAll());
+    }
+
+    @Override
     public List<TransactionDTO> findByCustomerId(Long customerId) {
         return transactionMapper.toDtoList(transactionRepository.findByCustomerId(customerId));
     }

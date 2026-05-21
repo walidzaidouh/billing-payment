@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface CaisseRepository extends JpaRepository<Caisse,Long> {
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Transactional
     @Query("""
             UPDATE Caisse c
