@@ -7,16 +7,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class TransactionProducer {
 
-    private final RabbitTemplate rabbitTemplate;
+    private final ProducerTemplate producerTemplate;
 
-    public TransactionProducer(RabbitTemplate rabbitTemplate) {
-        this.rabbitTemplate = rabbitTemplate;
+    public TransactionProducer(ProducerTemplate producerTemplate) {
+        this.producerTemplate = producerTemplate;
     }
 
     public void sendTransaction(TransactionDTO transaction) {
-        rabbitTemplate.convertAndSend(
-                "INVOICE_QUEUE",   // queue name
-                transaction       // message
-        );
+        producerTemplate.sendBody("direct:sendTransaction", transaction);
     }
 }

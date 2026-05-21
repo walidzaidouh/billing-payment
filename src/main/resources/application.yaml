@@ -46,6 +46,7 @@ spring:
     default-schema: payment
     baseline-on-migrate: true
     locations: classpath:scripts
+
   rabbitmq:
     host: 149.56.107.189
     port: 5672

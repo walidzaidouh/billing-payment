@@ -1,17 +1,25 @@
 package ma.atos.billing.payment.controllers;
 
 
-import lombok.RequiredArgsConstructor;
+import ma.atos.billing.payment.dto.TransactionDTO;
+import ma.atos.billing.payment.listenenersAndProducers.TransactionProducer;
 import ma.atos.billing.payment.proxies.InvoiceExternalProxy;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
 public class TestController {
 
-    public final InvoiceExternalProxy invoiceExternalProxy;
+    private final TransactionProducer producer;
 
+    public TestController(TransactionProducer producer) {
+        this.producer = producer;
+    }
+
+    @PostMapping
+    public String send(@RequestBody TransactionDTO dto) {
+        producer.sendTransaction(dto);
+        return "Transaction sent!";
+    }
 }
